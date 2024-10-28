@@ -1,6 +1,7 @@
 # Example
 
-An example of a package manifest using the Swift Package Registry: [Package.swift](./Package.swift)
+An example of a package manifest using the Swift Package Registry:
+[Package.swift](./Package.swift)
 
 ## Usage
 
@@ -13,6 +14,6 @@ An example of a package manifest using the Swift Package Registry: [Package.swif
 
 1. Build the package
 
-    ```bash
-    swift build
-    ```
+   ```bash
+   swift build
+   ```

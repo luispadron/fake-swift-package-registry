@@ -1,8 +1,14 @@
-# Swift Package Registry - A test implementation
+# Fake Swift Package Registry - A test implementation
 
-This is a test implementation of a [Swift package registry](https://github.com/swiftlang/swift-package-manager/blob/main/Documentation/PackageRegistry/Registry.md), using [Deno](https://deno.com/).
+This is a test implementation of a
+[Swift package registry](https://github.com/swiftlang/swift-package-manager/blob/main/Documentation/PackageRegistry/Registry.md),
+using [Deno](https://deno.com/).
 
-**It is not intended for production use. It is a read-only implementation that serves the packages over in: [scaffold_db.ts](./scaffold_db.ts).**
+**It is not intended for production use. It is a read-only implementation that
+serves the packages over in: [scaffold_db.ts](./scaffold_db.ts).**
+
+You can use this as part of a CI/CD pipeline to test your Swift package manager
+tooling against a fake registry.
 
 ## Usage
 
@@ -41,5 +47,4 @@ curl http://localhost:8000/apple/swift-collections/1.1.4 | jq
     "https://github.com/apple/swift-collections"
   ]
 }
-
 ```

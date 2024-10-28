@@ -11,15 +11,19 @@ async function createPackages(kv: Deno.Kv) {
 async function createSwiftCollectionsPackages(kv: Deno.Kv) {
   const swiftCollectionsKey = "swift-collections";
   const versions = ["1.1.4", "1.1.3", "1.1.2"];
+  const checkSumByVersion: Record<string, string> = {
+    "1.1.4": "c646382695c3bfd5abcc11179d3fa1602318b105393bfae4457472bc9b7d036a",
+    "1.1.3": "548a9bfdc508158bf0664f7dc163ebdd898c2c9212cfa8b3f46c1f09a428c1df",
+    "1.1.2": "62249c14104d3a340c19921deffa72d58f833270878c39190cf78ade6d905bed",
+  };
   const packages: SwiftPackage[] = versions.map((version) => ({
     id: `apple.${swiftCollectionsKey}`,
     version,
     resources: [
       {
-        name: "Sources",
+        name: "source-archive",
         type: "application/zip",
-        checksum:
-          "a2ac54cf25fbc1ad0028f03f0aa4b96833b83bb05a14e510892bb27dea4dc812",
+        checksum: checkSumByVersion[version],
       },
     ],
     metadata: {
@@ -29,11 +33,12 @@ async function createSwiftCollectionsPackages(kv: Deno.Kv) {
       description: "Commonly used data structures for Swift",
       licenseURL:
         "https://github.com/apple/swift-collections/blob/main/LICENSE",
+      originalPublicationTime: "2022-01-31T02:22:40Z",
+      readmeURL:
+        "https://github.com/apple/swift-collections/blob/main/README.md",
+      repositoryURLs: ["https://github.com/apple/swift-collections"],
     },
-    publishedAt: new Date().toISOString(),
-    originalPublicationTime: new Date().toISOString(),
-    readmeURL: "https://github.com/apple/swift-collections/blob/main/README.md",
-    repositoryURLs: ["https://github.com/apple/swift-collections"],
+    publishedAt: "2022-01-31T02:22:40Z",
   }));
 
   for (const pkg of packages) {

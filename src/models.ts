@@ -1,5 +1,9 @@
+export interface SwiftPackageRelease {
+  url: string;
+}
+
 export interface SwiftPackageReleases {
-  releases: Record<string, { url: string }>;
+  releases: Record<string, SwiftPackageRelease>;
 }
 
 export interface SwiftPackage {
@@ -46,6 +50,6 @@ export function getReleasesFromPackages(
         url: `${baseUrl}/${pkg.version}`,
       };
       return acc;
-    }, {} as Record<string, string>),
+    }, {} as Record<string, SwiftPackageRelease>),
   };
 }

@@ -63,11 +63,15 @@ router
       );
 
       const pkg = record.value as SwiftPackage;
-      const repositoryURL = pkg.metadata.repositoryURLs[0];
-      const archiveURL = `${repositoryURL}/archive/refs/tags/${version}.zip`;
-
-      const archiveResponse = await fetch(archiveURL);
-      context.response.body = await archiveResponse.bytes();
+      const repositoryURL = pkg.metadata?.repositoryURLs?.[0];
+      if (repositoryURL === undefined) {
+        context.response.status = 404;
+        context.response.body = { detail: "release not found" };
+      } else {
+        const archiveURL = `${repositoryURL}/archive/refs/tags/${version}.zip`;
+        const archiveResponse = await fetch(archiveURL);
+        context.response.body = await archiveResponse.bytes();
+      }
     } else {
       context.response.body = record.value as SwiftPackage;
     }

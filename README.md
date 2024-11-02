@@ -5,7 +5,7 @@ This is a test implementation of a
 using [Deno](https://deno.com/).
 
 **It is not intended for production use. It is a read-only implementation that
-serves the packages over in: [scaffold_db.ts](./scaffold_db.ts).**
+serves the packages over in: [scaffold_db.ts](./src/scaffold_db.ts).**
 
 You can use this as part of a CI/CD pipeline to test your Swift package manager
 tooling against a fake registry.

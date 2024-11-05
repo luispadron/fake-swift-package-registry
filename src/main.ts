@@ -4,7 +4,7 @@ import scaffoldDb from "./scaffold_db.ts";
 import { getReleasesFromPackages, SwiftPackage } from "./models.ts";
 
 // Scaffold a database
-const kv = await Deno.openKv(":memory:");
+const kv = await Deno.openKv();
 await scaffoldDb(kv);
 
 // Setup routes

@@ -68,9 +68,8 @@ router
         context.response.status = 404;
         context.response.body = { detail: "release not found" };
       } else {
-        const archiveURL = `${repositoryURL}/archive/refs/tags/${version}.zip`;
-        const archiveResponse = await fetch(archiveURL);
-        context.response.body = await archiveResponse.bytes();
+        const archiveURL = `archives/${name}-${version}.zip`;
+        context.response.body = await Deno.readFile(archiveURL);
       }
     } else {
       context.response.body = record.value as SwiftPackage;

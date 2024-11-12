@@ -12,9 +12,9 @@ async function createSwiftCollectionsPackages(kv: Deno.Kv) {
   const swiftCollectionsKey = "swift-collections";
   const versions = ["1.1.4", "1.1.3", "1.1.2"];
   const checkSumByVersion: Record<string, string> = {
-    "1.1.4": "c646382695c3bfd5abcc11179d3fa1602318b105393bfae4457472bc9b7d036a",
-    "1.1.3": "548a9bfdc508158bf0664f7dc163ebdd898c2c9212cfa8b3f46c1f09a428c1df",
-    "1.1.2": "62249c14104d3a340c19921deffa72d58f833270878c39190cf78ade6d905bed",
+    "1.1.4": "67cb89782dbb94d0c818ae6d97af289b797aa186c2fcdb929baa26613ab305c6",
+    "1.1.3": "a27dfbefa40fed5973742b2146bd1ef3a5b06fb678093f803e50163f2188b498",
+    "1.1.2": "70cae752fbac2eda5adf9bc3752929afd29c5725182e0ed70f1ad982b00d1f66",
   };
   const packages: SwiftPackage[] = versions.map((version) => ({
     id: `apple.${swiftCollectionsKey}`,

@@ -123,6 +123,30 @@ router
     context.response.headers.set("Content-Version", "1");
     context.response.status = 405;
     context.response.body = { detail: "publishing isn't supported" };
+  })
+  // Example: GET /identifiers?url=https://github.com/mona/LinkedList
+  // https://github.com/swiftlang/swift-package-manager/blob/main/Documentation/PackageRegistry/Registry.md#45-lookup-package-identifiers-registered-for-a-url
+  .get("/identifiers", async (context) => {
+    context.response.headers.set("Content-Type", "application/json");
+    context.response.headers.set("Content-Version", "1");
+    const urlParam = context.request.url.searchParams.get("url")!;
+
+    // ignore .git suffix
+    const url = urlParam.replace(/\.git$/, "");
+
+    // find all packages that have a repositoryURL that match the url
+    const records = kv.list({ prefix: ["packages"] });
+    const packageIdentifiers: string[] = [];
+    for await (const record of records) {
+      const pkg = record.value as SwiftPackage;
+      if (pkg.metadata?.repositoryURLs?.includes(url)) {
+        packageIdentifiers.push(pkg.id);
+      }
+    }
+
+    context.response.body = {
+      identifiers: packageIdentifiers,
+    };
   });
 
 // Start server

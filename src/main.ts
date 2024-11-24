@@ -10,6 +10,21 @@ await scaffoldDb(kv);
 // Setup routes
 const router = new Router();
 router
+  .get("/", (context) => {
+    context.response.headers.set("Content-Type", "text/html");
+    context.response.body = `
+      <h1>Swift Package Registry</h1>
+      <p>This is a fake Swift package registry for the Swift Package Manager.</p>
+      <br>
+      <br>
+
+      Try:
+
+      <pre>
+        curl https://fake-spm-registry.deno.dev/apple/swift-collections/1.1.3
+      </pre>
+    `;
+  })
   // https://github.com/swiftlang/swift-package-manager/blob/main/Documentation/PackageRegistry/Registry.md#41-list-package-releases
   .get("/:scope/:name", async (context) => {
     const scope = context.params.scope;

@@ -24,4 +24,3 @@ jobs:
             --title "Release ${{ github.event.inputs.version }}" \
             --generate-notes \
             .build/fake-swift-package-registry
-
